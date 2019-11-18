@@ -1,0 +1,210 @@
+"use strict";
+
+(function () {   
+
+
+    /**
+     * Adding scrolled state for header on scroll
+     */
+    let headerComponent  = document.querySelector("header");
+    let navbarCollapseComponent  = document.querySelector(".navbar-collapse");
+    let hamburgerComponent = document.querySelector(".navbar-toggler");
+    
+    if(headerComponent){
+        let headerOffset = headerComponent.offsetTop + 10;
+        window.onscroll = function(){
+            if(window.pageYOffset > headerOffset){
+                headerComponent.classList.add("headerScrolled");
+            } else {
+                headerComponent.classList.remove("headerScrolled");
+                if(navbarCollapseComponent.classList.contains("show")){
+                    headerComponent.classList.add("headerScrolled"); 
+                }
+            }
+        }
+
+        hamburgerComponent.addEventListener("click", function(){
+            if(navbarCollapseComponent.classList.contains("show") && window.pageYOffset < headerOffset){
+                headerComponent.classList.remove("headerScrolled"); 
+            } else{
+                headerComponent.classList.add("headerScrolled");
+            }
+        });
+    }
+
+    /**
+     * Scrolling to Item Location
+     */
+    let scrollItems = document.querySelectorAll(".js-scroll-trigger");
+    if(scrollItems.length){
+        for(let i = 0; i< scrollItems.length; i++){
+            scrollItems[i].addEventListener("click", function(){
+                for(let j = 0; j< scrollItems.length; j++){
+                    scrollItems[j].classList.remove("active");
+                }
+                scrollItems[i].classList.add("active");
+                navbarCollapseComponent.classList.remove("show");
+            });
+        }
+    }
+
+    /**
+     * FAQ Accordian
+     */    
+    let faqAccordianHeader = $(".faqAccordian .card-header");
+    faqAccordianHeader.on('click', function(){
+        faqAccordianHeader.closest('.card').removeClass("active");
+        $(this).closest('.card').addClass('active');
+    })
+
+    /***
+     * Top rated Funds Owl Carousel
+     ***/
+
+    $('.topRatedFunds').owlCarousel({
+        loop: false,
+        margin: 40,
+        nav: true,
+        navText : ["<i class='icon icon14 iconLeftArrow'></i>","<i class='icon icon14 iconRightArrow'></i>"],
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1200: {
+                items: 3
+            }
+        }
+    });
+
+
+    /***
+     * Client Response Owl Carousel
+     ***/
+
+    $('.customerResponse').owlCarousel({
+        loop: false,
+        margin: 0,
+        nav: true,
+        navText : ["<i class='icon icon14 iconLeftArrow'></i>","<i class='icon icon14 iconRightArrow'></i>"],
+        responsive: {
+            0: {
+                items: 1
+            }
+        }
+    });
+
+
+
+    /***
+     * Star Rating
+     ***/
+
+    $(".rating").starRating({
+        totalStars: 5,
+        emptyColor: 'lightgray',
+        hoverColor: 'salmon',
+        activeColor: '#F3B435',
+        useGradient: false,
+        strokeColor: '#F3B435',
+        strokeWidth: 10,
+        starSize: 16,
+        readOnly: true
+    });
+
+    $('.country-input').on('keyup', function() {
+        var searchVal = $(this).val();
+        var filterItems = $('.country-list-item');
+    
+        if ( searchVal != '' ) {
+            filterItems.addClass('hidden');
+            $('.country-list-item[data-country-name*="' + searchVal.toLowerCase() + '"]').removeClass('hidden');
+        } else {
+            filterItems.removeClass('hidden');
+        }
+    });
+
+    $('.country-list-item').click(function(){
+        var countryCode = $(this).find('.flag').attr('class');
+        $('.countryImage').html('<i class="'+ countryCode +'"></i>')
+    })
+
+    
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (userAgent.toLowerCase().match(/android/)){
+        $('.AppleIcon').hide();
+    }
+
+    if (userAgent.match(/iPhone|iPad|iPod/)){
+        $('.AndroidIcon').hide();
+    };
+})();
+"use strict";
+
+(function () {
+
+    /**
+     * OTP Input Navigation     
+     * */ 
+    function inputInsideOtpInput(el) {
+        if (el.value.length > 1) {
+            el.value = el.value[el.value.length - 1];
+        }
+        try {
+            if (el.value == null || el.value == "") {
+                this.foucusOnInput(el.previousElementSibling);
+            } else {
+                this.foucusOnInput(el.nextElementSibling);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function foucusOnInput(ele) {
+        ele.focus();
+        let val = ele.value;
+        ele.value = "";
+        // ele.value = val;
+        setTimeout(() => {
+            ele.value = val;
+        })
+    };
+
+
+
+    /***
+     * Navigating to Application
+     */
+    function applicationNavigation(){
+        window.location.href= "https://think.design/workspace/funds-genie-app";
+    }
+
+    //  SignIn Submission
+    let signInSubmit = document.querySelector("#signInSubmit");
+    if(signInSubmit){
+        signInSubmit.addEventListener("click", function(){
+            applicationNavigation();
+        });
+    }
+
+    // SignUp Submission
+    let signUpSubmit = document.querySelector("#signUpSubmit");
+    if(signUpSubmit){
+        signUpSubmit.addEventListener("click", function(){
+            applicationNavigation();
+        });
+    }
+
+    // SignIn With OTP Submission
+    let OTPSubmit = document.querySelector("#OTPSubmit");
+    if(OTPSubmit){
+        OTPSubmit.addEventListener("click", function(){
+            applicationNavigation();
+        });
+    }    
+
+})();
