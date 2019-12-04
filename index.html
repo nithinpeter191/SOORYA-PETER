@@ -1,251 +1,590 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- saved from url=(0043)https://think.design/workspace/funds-genie/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Required meta tags-->
-  
-  <meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover" name="viewport">
-  <meta content="yes" name="apple-mobile-web-app-capable">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags-->
 
-  <!-- Color theme for statusbar -->
-  <meta content="#2196f3" name="theme-color">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!-- Color theme for statusbar -->
+    <meta content="#2196f3" name="theme-color">
+    <!-- Funds Genie -->
+    <title>EVOQUE</title>
+    <link href="./EVOQUE.png" rel="shortcut icon" type="image/png">
+    <link href="./vendor.min.css" rel="stylesheet">
+    <link href="./style.min.css" rel="stylesheet">
+    <style>
 
-  <!-- Funds Genie -->
-  <title>EVOQUE</title>
-  <link href="./EVOQUE.png" rel="shortcut icon" type="image/png">
-
-  <link href="./vendor.min.css" rel="stylesheet">
 
 
-  <link href="./style.min.css" rel="stylesheet">
-  <style>
-  .btnnew
-	{
-		background: #FFFFFF;
-        border: 1px solid rgba(189, 195, 203, 0.7);
-        border-radius: 4px;
-        font-size: 12px;
-        color: #535B62;
-        padding: 5px 16px;
-        -webkit-transition: all 0.25s;
-        transition: all 0.25s;
-        line-height: 1.5;
-        cursor: pointer;
-		margin-left:5px;
-	}
-	.chara{
-		 padding: 0;
-         margin: 0;
-        font-size: 14px;
-        line-height: 1.2;
-        font-family: 'Graphik Web Regular', sans-serif;
-        font-smoothing: antialiased;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: initial;
-        color: #535b62;
-        background-color: white;
-        overflow-x: hidden;
-		text-transform: capitalize;
-	}
-	.iconHamburger{
-		color:black;
-	}
-	header .navbar {
-    padding: 0;
-    background: #fff;
-}
-.icon-bar{
-	display: block;
-    width: 22px;
-    height: 2px;
-    border-radius: 1px;
-    background-color: #2E363F;
-	margin-top: 4px;
-	width: 22px;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-}
-.navbar-dark .navbar-nav .nav-link {
-    color: gold;
-}
-.bg-dark {
-    background-color: #000000!important;
-}
-.chara {
-	background-color:#000000!important;
-}
-.icon-bar{
-	background-color:gold;
-}
-.navbar-dark .navbar-nav .nav-link:hover {
-    color: yellow;
-}
-.navbar-dark .navbar-nav .nav-link.active {
-    color: red;
-}
-  </style>
 
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .card-container {
+            -webkit-perspective: 1000;
+            perspective: 1000;
+            margin: 0 auto 50px;
+            width: 400px;
+            margin-top: 250px;
+        }
+
+        .front,
+        .back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 30px;
+            box-sizing: border-box;
+            transition-delay: 0.15s;
+            transition: 0;
+        }
+
+        .front {
+            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+        }
+
+        .back {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            opacity: 0;
+            padding-top: 60px;
+            -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+            background: #333741;
+            color: white;
+        }
+
+        .card {
+            position: relative;
+            width: 400px;
+            height: 450px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 40px 110px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            transition: 0.5s;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+            .card:hover {
+                -webkit-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+
+                .card:hover .front {
+                    opacity: 0;
+                }
+
+                .card:hover .back {
+                    opacity: 1;
+                }
+
+        .sub-title {
+            color: #de6262;
+            -webkit-animation: slide-in 0.75s;
+            animation: slide-in 0.75s;
+            -webkit-animation: slide-in 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            animation: slide-in 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            -webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            font-size: 18px;
+            font-weight: 200;
+            margin: 0 0 5px 0;
+        }
+
+        .title {
+            color: #333741;
+            -webkit-animation: slide-in-slow 0.75s;
+            animation: slide-in-slow 0.75s;
+            -webkit-animation: slide-in-slow 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            animation: slide-in-slow 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            -webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            font-size: 30px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .synopsis {
+            color: #de6262;
+            font-size: 27px;
+            font-weight: 600;
+            margin: 0 0 15px;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 19px;
+            line-height: 1.5;
+            margin: 0 0 35px;
+        }
+
+        .btn {
+            border: 1px solid #ffb88c;
+            border-radius: 5px;
+            background: transparent;
+            display: inline-block;
+            font-size: 17px;
+            padding: 8px 20px 9px 15px;
+            color: #ffb88c;
+            transition: 0.5s;
+            margin: 0 2px 0;
+            font-weight: 100;
+        }
+
+            .btn.secondary {
+                border-color: #de6262;
+                color: #de6262;
+            }
+
+                .btn.secondary:hover {
+                    background: #de6262;
+                }
+
+            .btn:hover {
+                cursor: pointer;
+                background: #ffb88c;
+                color: white;
+            }
+
+            .btn i {
+                margin: 0 5px 0;
+            }
+
+        .image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            -webkit-animation: slide-in-right 1.25s;
+            animation: slide-in-right 1.25s;
+            -webkit-animation: slide-in-right 1.25s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            animation: slide-in-right 1.25s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            -webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+            font-size: 35px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        @-webkit-keyframes slide-in {
+            0% {
+                -webkit-transform: translate3d(-300px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
+            }
+
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes slide-in {
+            0% {
+                -webkit-transform: translate3d(-300px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
+            }
+
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @-webkit-keyframes slide-in-slow {
+            0% {
+                -webkit-transform: translate3d(-300px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
+            }
+
+            20% {
+                -webkit-transform: translate3d(-300px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
+            }
+
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes slide-in-slow {
+            0% {
+                -webkit-transform: translate3d(-300px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
+            }
+
+            20% {
+                -webkit-transform: translate3d(-300px, 0, 0);
+                transform: translate3d(-300px, 0, 0);
+            }
+
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @-webkit-keyframes slide-in-right {
+            0% {
+                -webkit-transform: translate3d(400px, 0, 0);
+                transform: translate3d(400px, 0, 0);
+            }
+
+            30% {
+                -webkit-transform: translate3d(400px, 0, 0);
+                transform: translate3d(400px, 0, 0);
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in-right {
+            0% {
+                -webkit-transform: translate3d(400px, 0, 0);
+                transform: translate3d(400px, 0, 0);
+            }
+
+            30% {
+                -webkit-transform: translate3d(400px, 0, 0);
+                transform: translate3d(400px, 0, 0);
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
+
+        .btnnew {
+            background: #FFFFFF;
+            border: 1px solid rgba(189, 195, 203, 0.7);
+            border-radius: 4px;
+            font-size: 12px;
+            color: #535B62;
+            padding: 5px 16px;
+            -webkit-transition: all 0.25s;
+            transition: all 0.25s;
+            line-height: 1.5;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .chara {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.2;
+            font-family: 'Graphik Web Regular', sans-serif;
+            font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: initial;
+            color: #535b62;
+            background-color: white;
+            overflow-x: hidden;
+            text-transform: capitalize;
+        }
+
+        .iconHamburger {
+            color: black;
+        }
+
+        header .navbar {
+            padding: 0;
+            background: #fff;
+        }
+
+        .icon-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+            background-color: #2E363F;
+            margin-top: 4px;
+            width: 22px;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: gold;
+        }
+
+        .bg-dark {
+            background-color: #000000 !important;
+        }
+
+        .chara {
+            background-color: #000000 !important;
+        }
+
+        .icon-bar {
+            background-color: gold;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: yellow;
+        }
+
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: red!important;
+        }
+        .navbar-brand {
+            float: left;
+            height: 100px !important;
+            padding-top: 10px;
+            padding-bottom: 0px !important;
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            font-size: 18px;
+            line-height: 20px;
+            vertical-align: middle;
+        }
+        header.headerScrolled {
+            background-color:transparent; 
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<body class="bgColorBody" style="background-color:black;" id="page-top">
+<body class="bgColorBody" style="background-color:white;" id="page-top">
 
   <!-- Header -->
-  <header class="fixed-top" style="margin-top:30px;">
-    <nav class="navbar navbar-expand-xl bg-dark navbar-dark" id="mainNav">
-      <div class="container">
-        <a href="#" class="js-scroll-trigger fontWeight400 navbar-brand">
-		<img src="./EVOQUE.png" alt="evoque" class="img-fluid" Width="400px" height="200px;">
-		<span style="color:black;font-weight:bold;">EVOQUE EVENTS</span></a>
-        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right p-0" data-target="#navbarResponsive" data-toggle="collapse" type="button">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto fontSize14 fontWeight600 navbar-nav text-uppercase">
-            <li class="nav-item">
-              <a href="#whatisFund" class="js-scroll-trigger nav-link chara">HOME</a>
-            </li>
-            <li class="nav-item">
-              <a href="#howItWorks" class="js-scroll-trigger nav-link chara">ABOUT</a>
-            </li>
-            <li class="nav-item">
-              <a href="#whyevoque" class="js-scroll-trigger nav-link chara">CONTACT US</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+    <header class="fixed-top">
+        <!--<nav class="navbar navbar-expand-xl bg-dark navbar-dark" id="mainNav">
+            <div class="container">
+                <a href="#" class="navbar-brand">
+                    <img src="./EVOQUE.png" alt="evoque" class="img-fluid" Width="400px" height="200px;">
+                </a>
+                <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right p-0" data-target="#navbarResponsive" data-toggle="collapse" type="button">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto fontSize14 fontWeight600 navbar-nav text-uppercase">
+                        <li class="nav-item">
+                            <a href="#whatisFund" class="js-scroll-trigger nav-link chara">HOME <span class="glyphicon glyphicon-bookmark"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#howItWorks" class="js-scroll-trigger nav-link chara">ABOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#whyevoque" class="js-scroll-trigger nav-link chara">CONTACT US</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>-->
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+            <a href="#" class="navbar-brand"><img src="./EVOQUE.png" alt="evoque" ></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse1">
+                <div class="navbar-nav">
+                    <a href="#home" class="nav-item nav-link">HOME</a>
+                    <a href="#about" class="nav-item nav-link">ABOUT</a>
+                    <a href="#contact" class="nav-item nav-link">CONTACT US</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
   <!-- Main Section -->
   <main>
 
     <!-- Top Information Section -->
-    <section  class="position-relative topInfoSection" >
-      <div class="container position-relative  d-lg-flex  topInfoContentBlock">
-        <div class="row">
-          <div class="col-12 col-lg-8 col-xl-10" >
-		  <div class="topInformation fontWeight700" style="color:black;">EVOQUE <span class="secondFontFamily fontWeight400">- EVENTS</span></div>
-            <div class="topInformation fontWeight200" style="color:black;">DREAM.WITNESS.REVEL</div>
-           <!--  <div class="tertiaryFont fontWeight400 h5 my-3 my-lg-4">Simplest way to collaborate a group, association or employees.</div>
-            <div class="align-items-center d-flex justify-content-start">
-              <a href="javascript:void(0)" class="mr-4 AndroidIcon AppIconLink"><img src="./playstore.svg"></a>
-              <a href="javascript:void(0)" class="AppIconLink AppleIcon"><img src="./app_store.svg"></a>
-            </div>
-          </div>-->
-        </div>
-        <!-- <div class="topInfoIllustrationBlock">
-          <img src="./images/genie-lamp.png" alt="funds Genie" class="genieImg" />
-          <img src="./images/bush_1.png" alt="funds Genie" class="bushImg" />
-        </div> -->
-      </div>
-    </section>
-	       <section class="landPgSection whyFundSection" id="whyevoque">
-      <div class="text-center landPgTopBlock mb-5 px-3">
-        <h2 class="mb-2 fontWeight700 primaryFont">PORTFOLIO</h2>
-        <h5 class="secondFontFamily tertiaryFont"></h5>
-      </div>
-      <div class="container">
-        <div class="owl-carousel topRatedFunds owl-loaded owl-drag">
-        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 4360px;">
-		<div class="owl-item active" style="width: 323.333px; margin-right: 40px;"><div class="item">
-            <div class="text-center card fundCard">
-              <div class="card-body" style="background-image:url('3.jpg'); background-size: 323px 200px;background-repeat: no-repeat;">
-               
-                <div class="secondFontFamily fontWeight600 fundName h5 mb-2 mt-3">
-                </div>
-                <div class="mb-3 fundRating">
-                  <div class="disabled rating" data-rating="4.5"><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-532{fill:url(#532_SVGID_1_);}.svg-hovered-532{fill:url(#532_SVGID_2_);}.svg-active-532{fill:url(#532_SVGID_3_);}</style><lineargradient id="532_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="532_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="532_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-532" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-532" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-532{fill:url(#532_SVGID_1_);}.svg-hovered-532{fill:url(#532_SVGID_2_);}.svg-active-532{fill:url(#532_SVGID_3_);}</style><lineargradient id="532_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="532_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="532_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-532" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-532" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-532{fill:url(#532_SVGID_1_);}.svg-hovered-532{fill:url(#532_SVGID_2_);}.svg-active-532{fill:url(#532_SVGID_3_);}</style><lineargradient id="532_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="532_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="532_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-532" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-532" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-532{fill:url(#532_SVGID_1_);}.svg-hovered-532{fill:url(#532_SVGID_2_);}.svg-active-532{fill:url(#532_SVGID_3_);}</style><lineargradient id="532_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="532_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="532_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-532" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-532" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-532{fill:url(#532_SVGID_1_);}.svg-hovered-532{fill:url(#532_SVGID_2_);}.svg-active-532{fill:url(#532_SVGID_3_);}</style><lineargradient id="532_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="532_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="532_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-532" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-empty-532" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div></div>
-                </div>
-              </div>
-            </div>
-          </div></div><div class="owl-item active" style="width: 323.333px; margin-right: 40px;"><div class="item">
-            <div class="text-center card fundCard">
-              <div class="card-body" style="background-image:url('1.jpg'); background-size: 323px 200px;background-repeat: no-repeat;">
-                
-                <div class="secondFontFamily fontWeight600 fundName h5 mb-2 mt-3"></div>
-                <div class="mb-3 fundRating">
-                  <div class="disabled rating" data-rating="5"><div class="jq-star" style="width:16px;  height:16px;">
-				  <svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div></div>
-                </div>
-              </div>
-            </div>
-          </div></div>
-		  <div class="owl-item active" style="width: 323.333px; margin-right: 40px;"><div class="item">
-            <div class="text-center card fundCard">
-              <div class="card-body" style="background-image:url('4.jpg'); background-size: 323px 200px;background-repeat: no-repeat;">
-                
-                <div class="secondFontFamily fontWeight600 fundName h5 mb-2 mt-3"></div>
-                <div class="mb-3 fundRating">
-                  <div class="disabled rating" data-rating="5"><div class="jq-star" style="width:16px;  height:16px;">
-				  <svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-47{fill:url(#47_SVGID_1_);}.svg-hovered-47{fill:url(#47_SVGID_2_);}.svg-active-47{fill:url(#47_SVGID_3_);}</style><lineargradient id="47_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="47_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="47_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-47" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-47" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div></div>
-                </div>
-              </div>
-            </div>
-          </div></div>
-		  <div class="owl-item active" style="width: 323.333px; margin-right: 40px;"><div class="item">
-            <div class="text-center card fundCard">
-              <div class="card-body" style="background-image:url('2.jpg'); background-size: 323px 200px;background-repeat: no-repeat;">
-                
-                <div class="secondFontFamily fontWeight600 fundName h5 mb-2 mt-3"></div>
-                <div class="mb-3 fundRating">
-                  <div class="disabled rating" data-rating="3.85"><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-178{fill:url(#178_SVGID_1_);}.svg-hovered-178{fill:url(#178_SVGID_2_);}.svg-active-178{fill:url(#178_SVGID_3_);}</style><lineargradient id="178_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="178_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="178_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-178" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-178" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-178{fill:url(#178_SVGID_1_);}.svg-hovered-178{fill:url(#178_SVGID_2_);}.svg-active-178{fill:url(#178_SVGID_3_);}</style><lineargradient id="178_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="178_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="178_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-178" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-178" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-178{fill:url(#178_SVGID_1_);}.svg-hovered-178{fill:url(#178_SVGID_2_);}.svg-active-178{fill:url(#178_SVGID_3_);}</style><lineargradient id="178_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="178_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="178_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-178" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-178" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-178{fill:url(#178_SVGID_1_);}.svg-hovered-178{fill:url(#178_SVGID_2_);}.svg-active-178{fill:url(#178_SVGID_3_);}</style><lineargradient id="178_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="178_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="178_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-active-178" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-active-178" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div><div class="jq-star" style="width:16px;  height:16px;"><svg version="1.0" class="jq-star-svg" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="305px" height="305px" viewBox="60 -62 309 309" style="enable-background:new 64 -59 305 305; stroke-width:10px;" xml:space="preserve"><style type="text/css">.svg-empty-178{fill:url(#178_SVGID_1_);}.svg-hovered-178{fill:url(#178_SVGID_2_);}.svg-active-178{fill:url(#178_SVGID_3_);}</style><lineargradient id="178_SVGID_1_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:lightgray"></stop><stop offset="1" style="stop-color:lightgray"></stop> </lineargradient><lineargradient id="178_SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:salmon"></stop><stop offset="1" style="stop-color:salmon"></stop> </lineargradient><lineargradient id="178_SVGID_3_" gradientUnits="userSpaceOnUse" x1="121.1501" y1="-70.35" x2="121.15" y2="125.0045"><stop offset="0" style="stop-color:#F3B435"></stop><stop offset="1" style="stop-color:#F3B435"></stop> </lineargradient><polygon data-side="left" class="svg-empty-178" points="281.1,129.8 364,55.7 255.5,46.8 214,-59 172.5,46.8 64,55.4 146.8,129.7 121.1,241 213.9,181.1 213.9,181 306.5,241 " style="stroke: #F3B435"></polygon><polygon data-side="right" class="svg-empty-178" points="364,55.7 255.5,46.8 214,-59 213.9,181 306.5,241 281.1,129.8 " style="stroke-dasharray: 230 232 210 0; stroke: #F3B435"></polygon></svg></div></div>
-                </div>
-              </div>
-            </div>
-          </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="icon icon14 iconLeftArrow"></i></button><button type="button" role="presentation" class="owl-next"><i class="icon icon14 iconRightArrow"></i></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
-      </div>
-    </section>
-    <!-- What is evoque Section -->
-    <section class="landPgSection whatisFundSection" id="whatisFund">
-      <div class="text-center landPgTopBlock mb-5 px-3">
-        <h2 class="mb-2 fontWeight700 primaryFont">What is evoque</h2>
-        <!--<h5 class="secondFontFamily tertiaryFont">A Complete online platform to manage a group</h5>-->
-      </div>
-      <div class="fundsGenieDescriptionBlock">
-        <div class="container">
-          <div class="row whatFundGenieRow">
-            <div class="text-center mb-4 col-md-4">
-              <img src="./genie_account_personalise_3.png" alt="funds genie" class="whatFundGenieImage">
-              <h4 class="primaryFont my-3">Learn stock market basics</h4>
-              <!--<ul class="secondFontFamily tertiaryFont list-unstyled fontSize14">
-                <li class="mb-1">100% Online</li>
-                <li class="mb-1">Completely Paperless</li>
-                <li class="mb-1">KYC Using PAN and Aadhaar</li>
-              </ul>-->
-            </div>
-            <div class="text-center mb-4 col-md-4">
-              <img src="./genie_account_open_1.png" alt="funds genie" class="whatFundGenieImage">
-              <h4 class="primaryFont my-3">Participate in virtual trading</h4>
-              <!--<ul class="secondFontFamily tertiaryFont list-unstyled fontSize14">
-                <li class="mb-1">Direct Fund Transfer to AMCs</li>
-                <li class="mb-1">Withdraw Anytime</li>
-                <li class="mb-1">2048 Bit Encryption</li>
-              </ul>-->
-            </div>
-            <div class="text-center mb-4 col-md-4">
-              <img src="./genie_safe_1.png" alt="funds genie" class="whatFundGenieImage">
-              <h4 class="primaryFont my-3">Win exciting prizes</h4>
-               <!--<ul class="secondFontFamily tertiaryFont list-unstyled fontSize14">
-                <li class="mb-1">Geojit Fund Recommendations</li>
-                <li class="mb-1">Geojit Investment ROBO</li>
-                <li class="mb-1">Realtime Portfolio Tracking</li>
-              </ul>-->
-            </div>
+      <section class="position-relative topInfoSection" id="home">
+          <!--<div class="container position-relative  d-lg-flex  topInfoContentBlock">
+      <div class="row">
+        <div class="col-12 col-lg-8 col-xl-10" >
+        <div class="topInformation fontWeight700" style="color:black;">EVOQUE <span class="secondFontFamily fontWeight400">- EVENTS</span></div>
+          <div class="topInformation fontWeight200" style="color:black;">DREAM.WITNESS.REVEL</div>
+         <!--  <div class="tertiaryFont fontWeight400 h5 my-3 my-lg-4">Simplest way to collaborate a group, association or employees.</div>
+          <div class="align-items-center d-flex justify-content-start">
+            <a href="javascript:void(0)" class="mr-4 AndroidIcon AppIconLink"><img src="./playstore.svg"></a>
+            <a href="javascript:void(0)" class="AppIconLink AppleIcon"><img src="./app_store.svg"></a>
           </div>
         </div>
       </div>
-
-      <!-- Floating Elements Block -->
-      <div class="floatingElementsBlock whatisFundSectionElements">
-        <img src="./currency-note.png" alt="funds Genie" class="floatingElement currenyNote">
-        <img src="./gold-value.png" alt="funds Genie" class="floatingElement goldValue">
+      <div class="topInfoIllustrationBlock">
+        <img src="./images/genie-lamp.png" alt="funds Genie" class="genieImg" />
+        <img src="./images/bush_1.png" alt="funds Genie" class="bushImg" />
       </div>
-    </section>
+    </div>-->
+          <div  id="myCarousel" class="owl-carousel topRatedFunds owl-loaded owl-drag">
+              <div class="owl-stage-outer">
+                  <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 4360px;">
+                      <div class="owl-item active" style="width: 323.333px; margin-right: 40px;">
+                          <div class="item">
+                              <div class="card-container">
+                                  <div class="card">
+                                      <div class="front">
+                                          <h2 class="sub-title">Season 1</h2>
+                                          <h1 class="title">
+                                              Rick and Morty
+                                          </h1>
+                                          <img class="image" src="1.jpg" alt="" />
+                                      </div>
+                                      <div class="back">
+                                          <h3 class="synopsis">Synopsis</h3>
+                                          <p>
+                                              Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+                                              between domestic family life and interdimensional travel.
+                                          </p>
+                                          <div class="btn"><i class="fa fa-play"></i>Watch now</div>
+                                          <div class="btn secondary"><i class="fa fa-heart "></i>Add to list</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="owl-item active" style="width: 323.333px; margin-right: 40px;">
+                          <div class="item">
+                              <div class="card-container">
+                                  <div class="card">
+                                      <div class="front">
+                                          <h2 class="sub-title">Season 1</h2>
+                                          <h1 class="title">
+                                              Rick and Morty
+                                          </h1>
+                                          <img class="image" src="2.jpg" alt="" />
+                                      </div>
+                                      <div class="back">
+                                          <h3 class="synopsis">Synopsis</h3>
+                                          <p>
+                                              Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+                                              between domestic family life and interdimensional travel.
+                                          </p>
+                                          <div class="btn"><i class="fa fa-play"></i>Watch now</div>
+                                          <div class="btn secondary"><i class="fa fa-heart "></i>Add to list</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="owl-item active" style="width: 323.333px; margin-right: 40px;">
+                          <div class="item">
+                              <div class="card-container">
+                                  <div class="card">
+                                      <div class="front">
+                                          <h2 class="sub-title">Season 1</h2>
+                                          <h1 class="title">
+                                              Rick and Morty
+                                          </h1>
+                                          <img class="image" src="3.jpg" alt="" />
+                                      </div>
+                                      <div class="back">
+                                          <h3 class="synopsis">Synopsis</h3>
+                                          <p>
+                                              Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+                                              between domestic family life and interdimensional travel.
+                                          </p>
+                                          <div class="btn"><i class="fa fa-play"></i>Watch now</div>
+                                          <div class="btn secondary"><i class="fa fa-heart "></i>Add to list</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="owl-item active" style="width: 323.333px; margin-right: 40px;">
+                          <div class="item">
+                              <div class="card-container">
+                                  <div class="card">
+                                      <div class="front">
+                                          <h2 class="sub-title">Season 1</h2>
+                                          <h1 class="title">
+                                              Rick and Morty
+                                          </h1>
+                                          <img class="image" src="4.jpg" alt="" />
+                                      </div>
+                                      <div class="back">
+                                          <h3 class="synopsis">Synopsis</h3>
+                                          <p>
+                                              Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+                                              between domestic family life and interdimensional travel.
+                                          </p>
+                                          <div class="btn"><i class="fa fa-play"></i>Watch now</div>
+                                          <div class="btn secondary"><i class="fa fa-heart "></i>Add to list</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+</section>
+    <!-- What is evoque Section -->
+      <section class="landPgSection whatisFundSection" id="about">
+          <div class="text-center landPgTopBlock mb-5 px-3" style="margin-top:80px;">
+              <h2 class="mb-2 fontWeight700 primaryFont">What is EVOQUE ?</h2>
+              <!--<h5 class="secondFontFamily tertiaryFont">A Complete online platform to manage a group</h5>-->
+          </div>
+          <marquee width="100%" scrollamount="12" behavior="scroll" direction="right" height="500px">
+              <div class="fundsGenieDescriptionBlock">
+                  <div class="container">
+                      <div class="row whatFundGenieRow">
+                          <div class="text-center mb-4 col-md-4">
+                              <h4 class="primaryFont my-3">Wedding Event Planners</h4>
+                              <ul class="secondFontFamily tertiaryFont list-unstyled fontSize20">
+                                  <li class="mb-1">Variety</li>
+                                  <li class="mb-1">Flexible</li>
+                                  <li class="mb-1">More Reliable</li>
+                              </ul>
+                          </div>
+                          <div class="text-center mb-4 col-md-4">
+                              <h4 class="primaryFont my-3">Wedding Photography</h4>
+                              <ul class="secondFontFamily tertiaryFont list-unstyled fontSize20">
+                                  <li class="mb-1">Photo</li>
+                                  <li class="mb-1">Video</li>
+                                  <li class="mb-1">Helicam</li>
+                              </ul>
+                          </div>
+                          <div class="text-center mb-4 col-md-4">
+                              <h4 class="primaryFont my-3">Perfect Planners for your events</h4>
+                              <ul class="secondFontFamily tertiaryFont list-unstyled fontSize20">
+                                  <li class="mb-1">Weddings</li>
+                                  <li class="mb-1">Birthday</li>
+                                  <li class="mb-1">All other Parties</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </marquee>
+      </section>
 
-    <!-- How Funds Genie Works Section -->
-    <section class="landPgSection howFundWorksSection" id="howItWorks">
+    <!--<!-- How Funds Genie Works Section -->
+    <!--<section class="landPgSection howFundWorksSection" id="howItWorks">
       <div class="text-center landPgTopBlock mb-5 px-3">
         <h2 class="mb-2 fontWeight700 primaryFont">How it works</h2>
         <h5 class="secondFontFamily tertiaryFont">Simple, quick and delightful.</h5>
@@ -257,7 +596,6 @@
               <img src="./1_on_board.png" alt="funds genie" class="img-fluid">
             </div>
             <div class="mb-4 col-lg-4 col-md-6 offset-lg-2">
-              <!--<h2 class="mb-3 fontWeight500">On board</h2>-->
               <h5 class="secondFontFamily tertiaryFont fontWeight400 list-unstyled">
                 Download app
               </h5>
@@ -268,7 +606,6 @@
               <img src="./2_choose_fund.png" alt="funds genie" class="img-fluid">
             </div>
             <div class="mb-4 col-lg-4 col-md-6">
-              <!--<h2 class="mb-3 fontWeight500">Choose a fund</h2>-->
               <h5 class="secondFontFamily tertiaryFont fontWeight400">
                 Register using mobile.
               </h5>
@@ -279,7 +616,6 @@
               <img src="./3_online_payment.png" alt="funds genie" class="img-fluid">
             </div>
             <div class="mb-4 col-lg-4 col-md-6 offset-lg-2">
-              <!--<h2 class="mb-3 fontWeight500">Select your preference</h2>-->
               <h5 class="secondFontFamily tertiaryFont fontWeight400">
                 Start Learning from Virtual Trading.
               </h5>
@@ -290,76 +626,29 @@
               <img src="./4_track_fund.png" alt="funds genie" class="img-fluid">
             </div>
             <div class="mb-4 col-lg-4 col-md-6">
-              <!--<h2 class="mb-3 fontWeight500">News & Updates</h2>-->
               <h5 class="secondFontFamily tertiaryFont fontWeight400">
                 Prizes to top performers.
               </h5>
             </div>
           </div>
-          <!-- <div class="align-items-center fundsFeatureRow row">
-            <div class="text-center mb-4 col-lg-6 col-md-5">
-              <img src="./calculate-expense.png" alt="funds genie" class="img-fluid">
-            </div>
-            <div class="mb-4 col-lg-4 col-md-6 offset-lg-2">
-              <h2 class="mb-3 fontWeight500">Calculate your Expenses</h2>
-              <h5 class="secondFontFamily tertiaryFont fontWeight400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-              </h5>
-            </div>
-          </div>-->
         </div>
       </div>
-      <!-- Floating Elements Block -->
-      <div class="floatingElementsBlock howFundsWorksElements">
-        <img src="./currency-note.png" alt="funds Genie" class="floatingElement currenyNote1">
-        <img src="./gold-value.png" alt="funds Genie" class="floatingElement goldValue1">
-        <img src="./currency-note.png" alt="funds Genie" class="floatingElement currenyNote2">
-        <img src="./gold-value.png" alt="funds Genie" class="floatingElement goldValue2">
-        <img src="./currency-note.png" alt="funds Genie" class="floatingElement currenyNote3">
-        <img src="./gold-value.png" alt="funds Genie" class="floatingElement goldValue3">
-        <img src="./currency-note.png" alt="funds Genie" class="floatingElement currenyNote4">
-        <img src="./gold-value.png" alt="funds Genie" class="floatingElement goldValue4">
-      </div>
-    </section>
+    </section>-->
 
     <!-- Why Funds Genie Recommended Section -->
-    <!--<section class="landPgSection whyFundSection" id="whyevoque">
+    <section class="landPgSection whyFundSection" id="contact">
       <div class="text-center landPgTopBlock mb-5 px-3">
-        <h2 class="mb-2 fontWeight700 primaryFont">Why evoque</h2>
+        <h2 class="mb-2 fontWeight700 primaryFont">Contact Us</h2>
       </div>
       <div class="container">
-	  <div class="row" >
-	  <div class="text-center mb-4 col-md-4">
-	  </div>
-	  <div class="text-center mb-4 col-md-4">
-		   <div class="item">
-            <div class="text-center card fundCard">
-              <div class="card-body">
-				<div class="secondFontFamily fontWeight600 fundName h5 mb-2 mt-3" style="margin-bottom:0px">Features</div>
-                <div class="divider" style="margin-top:0px"></div>
-                <div class="secondFontFamily fontWeight600 fundName h6 mb-2 mt-3" align="left">
-				<ul class="mb-0 pl-3">
-					<li class="mb-2">
-						Stock market feeds.
-					</li>
-					<li class="mb-2">
-						Real time stock market participation feel.
-					</li>
-					<li>
-						Virtual Trading.
-					</li>
-				</ul>
-				</div>
-              </div>
-            </div>
-			</div>
-		</div>
+          <div class="row">
+              <b>EVOQUE EVENTS<br />
+              Akhil Sunny,Nobin S<br />
+              9340293482,9702347324<br />
+              fsjdnfk@gmail.com,dsads@gmail.com<br /></b>
+          </div>
 	 </div>
-	 <div class="text-center mb-4 col-md-4">
-	  </div>
-	 </div>
-	 </div>
-    </section>-->
+    </section>
 
 
 
@@ -370,20 +659,9 @@
   <footer class="secondFontFamily" id="footersection">
     <div class="container position-relative footerContent" style="color:black;">
       <div class="fontSize12 mt-5">
-        <div class="mb-2 fontWeight600">EVOQUE EVENTS</div>
+          <div class="mb-2 fontWeight600">©nithinpeter</div>
         
       </div>
-      <div class="fontSize12 mt-5">
-        <div class="mb-2 fontWeight600"><a href="./About.html">About Us</a> | <a  href="./Terms.html">Terms & Conditions</a>  | <a  href="./Privacy.html">Privacy Policy</a>  | <a  href="./Refund.html">Refund</a> | <a  href="./Contact.html">Contact Us</a></div>
-      </div>
-    </div>
-
-    <!-- Floating Elements Block -->
-    <div class="floatingElementsBlock footerElements">
-      <img src="./currency-note.png" alt="funds Genie" class="floatingElement currenyNote">
-      <img src="./gold-value.png" alt="funds Genie" class="floatingElement goldValue">
-      <img src="./bush_1.png" alt="funds Genie" class="floatingElement bushElement">
-      <img src="./footer-currency.svg" alt="funds Genie" class="floatingElement footerCurrency">
     </div>
   </footer>
 
@@ -394,7 +672,32 @@
 
   <script src="./app.js.download"></script>
 
+    <script>
+        $(document).ready(function () {
+            $("#myCarousel").on("slide.bs.carousel", function (e) {
+                var $e = $(e.relatedTarget);
+                var idx = $e.index();
+                var itemsPerSlide = 3;
+                var totalItems = $(".carousel-item").length;
 
+                if (idx >= totalItems - (itemsPerSlide - 1)) {
+                    var it = itemsPerSlide - (totalItems - idx);
+                    for (var i = 0; i < it; i++) {
+                        // append slides to end
+                        if (e.direction == "left") {
+                            $(".carousel-item")
+                                .eq(i)
+                                .appendTo(".carousel-inner");
+                        } else {
+                            $(".carousel-item")
+                                .eq(0)
+                                .appendTo($(this).find(".carousel-inner"));
+                        }
+                    }
+                }
+            });
+        });
+        </script>
 
 
 </body></html>
